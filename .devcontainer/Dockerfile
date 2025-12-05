@@ -11,11 +11,15 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && sh get-docker.sh \
     && rm get-docker.sh
 
-# Install Dockge
-RUN wget https://github.com/louislam/dockge/releases/download/v1.4.2/dockge-linux-amd64.zip \
-    && unzip dockge-linux-amd64.zip -d /opt/dockge \
-    && rm dockge-linux-amd64.zip \
+# Install Dockge - use the Docker image to extract the binary
+RUN docker pull louislam/dockge:1 \
+    && docker create --name extract louislam/dockge:1 \
+    && docker cp extract:/app /opt/dockge \
+    && rm -rf /opt/dockge/data \
+    && mv /opt/dockge/app/* /opt/dockge/ \
+    && rmdir /opt/dockge/app \
     && chmod +x /opt/dockge/dockge \
+    && docker rm extract \
     && mkdir -p /opt/stacks /app/data
 
 # Create startup script
