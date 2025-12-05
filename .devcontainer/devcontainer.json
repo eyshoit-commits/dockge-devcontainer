@@ -4,7 +4,7 @@
         "dockerfile": "Dockerfile",
         "context": ".."
     },
-    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "workspaceFolder": "/workspaces/dockge-final",
     "forwardPorts": [5001],
     "customizations": {
         "vscode": {
@@ -15,5 +15,5 @@
         }
     },
     "remoteUser": "root",
-    "postCreateCommand": "apt-get update && apt-get install -y wget unzip && wget https://github.com/louislam/dockge/releases/download/v1.4.0/dockge_1.4.0_linux_amd64.zip && unzip dockge_1.4.0_linux_amd64.zip -d /opt/dockge && rm dockge_1.4.0_linux_amd64.zip && chmod +x /opt/dockge/dockge && mkdir -p /opt/stacks /app/data && sudo dockerd --iptables=false --bridge=none & sleep 5 && /opt/dockge/dockge --host 0.0.0.0 --port 5001 --data-dir /app/data --stacks-dir /opt/stacks &"
+    "postCreateCommand": "apt-get update && apt-get install -y wget unzip && wget https://github.com/louislam/dockge/releases/download/v1.4.0/dockge_1.4.0_linux_amd64.zip && unzip dockge_1.4.0_linux_amd64.zip -d /opt/dockge && rm dockge_1.4.0_linux_amd64.zip && chmod +x /opt/dockge/dockge && mkdir -p /opt/stacks /app/data && dockerd --iptables=false --bridge=none & sleep 5 && /opt/dockge/dockge --host 0.0.0.0 --port 5001 --data-dir /app/data --stacks-dir /opt/stacks &"
 }
