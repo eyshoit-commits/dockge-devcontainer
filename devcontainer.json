@@ -1,0 +1,16 @@
+{
+  "name": "Dockge",
+  "dockerComposeFile": ["compose.yaml"],
+  "service": "dockge",
+  "workspaceFolder": "/workspace",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "forwardPorts": [5001],
+  "postCreateCommand": "echo 'Container is ready! Visit http://localhost:5001 to access Dockge'",
+  "remoteUser": "root"
+}
